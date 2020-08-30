@@ -1,11 +1,13 @@
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createMuiTheme, fade } from '@material-ui/core/styles';
 
 const defaultColors = {
   primary: '#000',
   secondary: '#373633',
   error: '#DC3545',
-  header: '#373633',
-  headerLink: '#fff'
+  headerBackground: '#373633',
+  headerColor: '#ffffff',
+  buttonBackgroundPrimary: '#ffffff',
+  buttonColorPrimary: '#373633',
 };
 
 const fontFamily = 'sans-serif';
@@ -13,7 +15,7 @@ const fontFamily = 'sans-serif';
 export default function initializeTheme(config) {
   const colors = {
     ...defaultColors,
-    ...(config ? config.colors : {})
+    ...config?.colors
   };
 
   return createMuiTheme({
@@ -32,5 +34,20 @@ export default function initializeTheme(config) {
     typography: {
       fontFamily
     },
+    overrides: {
+      MuiButton: {
+        root: {
+          textTransform: 'none',
+        },
+        containedPrimary: {
+          backgroundColor: colors.buttonBackgroundPrimary,
+          color: colors.buttonColorPrimary,
+
+          '&:hover': {
+            backgroundColor: fade(colors.buttonBackgroundPrimary, .8),
+          }
+        }
+      }
+    }
   });
 }

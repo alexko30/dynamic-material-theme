@@ -10,6 +10,7 @@ import ThemeConfig from './modules/ThemeConfig';
 import Header from './shared/components/Header';
 import ThemeStore from './core/stores/theme';
 
+@observer
 class App extends React.Component {
   themeStore = new ThemeStore();
 
@@ -20,9 +21,10 @@ class App extends React.Component {
   }
 
   render() {
-    if (this.themeStore.initializing) {
-      return <CircularProgress />;
+    if (!this.themeStore.theme) {
+      return <CircularProgress style={{ margin: '10% 0 0 50%' }} />;
     }
+
     return (
       <MuiThemeProvider theme={this.themeStore.theme}>
         <Typography component="div">
@@ -37,7 +39,7 @@ class App extends React.Component {
           />
           <Route 
             path="/theme-config"
-            component={ThemeConfig}  
+            render={() => <ThemeConfig theme={this.themeStore.theme} setConfig={this.themeStore.setConfig} />}  
           />
         </Typography>
       </MuiThemeProvider>
@@ -45,4 +47,4 @@ class App extends React.Component {
   }
 }
 
-export default observer(App);
+export default App;
