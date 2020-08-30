@@ -24,7 +24,7 @@ class ThemeConfig extends React.Component {
         property: 'headerBackground',
       },
       {
-        heading: 'Header color',
+        heading: 'Header text color',
         property: 'headerColor',
       },
       {
@@ -32,7 +32,7 @@ class ThemeConfig extends React.Component {
         property: 'buttonBackgroundPrimary',
       },
       {
-        heading: 'Button color',
+        heading: 'Button text color',
         property: 'buttonColorPrimary',
       },
     ];
